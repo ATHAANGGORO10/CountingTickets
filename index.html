@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="fform">
+        <table border="1" align="center" width="70%">
+            <tr>
+                <td width="100%" colspan="2">
+                    <h2 align="center">Travel Bintang Abadi</h2>
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <pre>
+                        Nama : <input type="text" size="20" name="inama">
+                        Tujuan : <select name="itujuan" size="1">
+                            <option value="Jakarta">Jakarta</option>
+                            <option value="Cirebon">Cirebon</option>
+                            <option value="Tasikmalaya">Tasikmalaya</option>
+                        </select>
+                        Jumlah Tiket : <input type="text" size="11" name="ijumlah">
+                        Member : <input type="checkbox" name="imember">Ya
+                    </pre>
+                </td>
+                <td width="500%"><pre>
+                    Harga Tiket : <input type="text" size="10" name="otiket">
+                    Sub Total : <input type="text" size="10" name="osub">
+                    Diskon : <input type="text" size="10" name="odiskon">
+                    Total Bayar : <input type="text" size="10" name="ototal">
+                </pre></td>
+            </tr>
+            <tr>
+                <td width="100%" colspan="2">
+                    <center>
+                        <input type="button" value="hitung" onclick="hitungtotal()">
+                        <input type="reset" value="ulang">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script src="index.js"></script>
+</body>
+</html>
