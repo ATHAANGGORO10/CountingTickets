@@ -1,0 +1,15 @@
+:root {
+    --Color-default-1: #1335f5;
+    --Color-default-2: #186cc0;
+}
+
+.btn-mode {
+    z-index: 9999;
+    padding: 7px 5px;
+    border-radius: 10%;
+    background-color: var(--Color-default-1);
+}
+
+.btn-mode:hover {
+    background-color: var(--Color-default-2);
+}
