@@ -11,11 +11,6 @@ function hitungtotal() {
         return;
     }
 
-    var ht = 0.0;
-    var sub = 0.0;
-    var diskon = 0.0;
-    var total = 0.0;
-
     var hargaPerKota = {
         "Jakarta": 10000,
         "Surabaya": 15000,
@@ -46,21 +41,73 @@ function hitungtotal() {
         "Tarakan": 21000,
         "Ambon": 22000,
         "Palu": 19000,
-        "Samarinda": 23000,
         "Ternate": 24000,
     };
 
-    ht = hargaPerKota[tujuan] || 0;
-    sub = jumlahtiket * ht;
-    if (document.fform.imember.checked == true) {
-        diskon = 0.10 * sub;
-    } else {
-        diskon = 0.0;
-    }
+    var ht = hargaPerKota[tujuan] || 0;
+    var sub = jumlahtiket * ht;
+    var diskon = document.fform.imember.checked ? 0.10 * sub : 0.0;
+    var total = sub - diskon;
 
-    total = sub - diskon;
+    localStorage.setItem('nama', nama);
+    localStorage.setItem('tujuan', tujuan);
+    localStorage.setItem('jumlahtiket', jumlahtiket);
+    localStorage.setItem('otiket', ht.toLocaleString('id-ID'));
+    localStorage.setItem('osub', sub.toLocaleString('id-ID'));
+    localStorage.setItem('odiskon', diskon.toLocaleString('id-ID'));
+    localStorage.setItem('ototal', total.toLocaleString('id-ID'));
     document.fform.otiket.value = ht.toLocaleString('id-ID');
     document.fform.osub.value = sub.toLocaleString('id-ID');
     document.fform.odiskon.value = diskon.toLocaleString('id-ID');
     document.fform.ototal.value = total.toLocaleString('id-ID');
 };
+
+window.onload = function () {
+    document.fform.inama.value = localStorage.getItem('nama') || '';
+    document.fform.ijumlah.value = localStorage.getItem('jumlahtiket') || '';
+    document.fform.otiket.value = localStorage.getItem('otiket') || '';
+    document.fform.osub.value = localStorage.getItem('osub') || '';
+    document.fform.odiskon.value = localStorage.getItem('odiskon') || '';
+    document.fform.ototal.value = localStorage.getItem('ototal') || '';
+};
+
+document.querySelector('button[type="reset"]').addEventListener('click', function () {
+    var nama = document.fform.inama.value.trim();
+    var tujuan = document.fform.itujuan.value.trim();
+    var jumlahtiket = parseFloat(document.fform.ijumlah.value.trim());
+
+    if (nama === '' || tujuan === '' || isNaN(jumlahtiket) || jumlahtiket <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Silahkan Isi Terlebih Dahulu Datanya',
+        });
+        return;
+    }
+    Swal.fire({
+        title: 'Apakah Kamu Ingin Mengulang?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem('nama');
+            localStorage.removeItem('jumlahtiket');
+            localStorage.removeItem('otiket');
+            localStorage.removeItem('osub');
+            localStorage.removeItem('odiskon');
+            localStorage.removeItem('ototal');
+
+            document.fform.inama.value = '';
+            document.fform.ijumlah.value = '';
+            document.fform.otiket.value = '';
+            document.fform.osub.value = '';
+            document.fform.odiskon.value = '';
+            document.fform.ototal.value = '';
+
+            Swal.fire('Berhasil direset!', '', 'success');
+        }
+    });
+});
