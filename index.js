@@ -42,7 +42,29 @@ function hitungtotal() {
         "Ambon": 22000,
         "Palu": 19000,
         "Ternate": 24000,
-    };
+        "Kendari": 17000,
+        "Gorontalo": 21000,
+        "Parepare": 18000,
+        "Bima": 20000,
+        "Bontang": 24000,
+        "Lhokseumawe": 23000,
+        "Binjai": 22000,
+        "Yogyakarta": 17000,
+        "Pangkalpinang": 20000,
+        "Probolinggo": 18000,
+        "Cilegon": 21000,
+        "Cimahi": 18000,
+        "Pematangsiantar": 23000,
+        "Tegal": 22000,
+        "Kendal": 17000,
+        "Salatiga": 19000,
+        "Pekalongan": 20000,
+        "Magelang": 18000,
+        "Sibolga": 21000,
+        "Padang Panjang": 18000,
+        "Sungai Penuh": 17000,
+        "Sawahlunto": 19000
+    };    
 
     var ht = hargaPerKota[tujuan] || 0;
     var sub = jumlahtiket * ht;
