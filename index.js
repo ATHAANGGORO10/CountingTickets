@@ -1,7 +1,16 @@
 function hitungtotal() {
-    var nama = (document.fform.inama.value);
-    var tujuan = (document.fform.itujuan.value);
-    var jumlahtiket = parseFloat(document.fform.ijumlah.value);
+    var nama = document.fform.inama.value.trim();
+    var tujuan = document.fform.itujuan.value.trim();
+    var jumlahtiket = parseFloat(document.fform.ijumlah.value.trim());
+
+    if (nama === '' || tujuan === '' || isNaN(jumlahtiket) || jumlahtiket <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Isi Data Terlebih Dahulu',
+        });
+        return;
+    }
+
     var ht = 0.0;
     var sub = 0.0;
     var diskon = 0.0;
@@ -22,8 +31,8 @@ function hitungtotal() {
     }
 
     total = sub - diskon;
-    document.fform.otiket.value = ht.toLocaleString (ht);
-    document.fform.osub.value = sub.toLocaleString (sub);
-    document.fform.odiskon.value = diskon.toLocaleString (diskon);
-    document.fform.ototal.value = total.toLocaleString (total);
+    document.fform.otiket.value = ht.toLocaleString(ht);
+    document.fform.osub.value = sub.toLocaleString(sub);
+    document.fform.odiskon.value = diskon.toLocaleString(diskon);
+    document.fform.ototal.value = total.toLocaleString(total);
 };
